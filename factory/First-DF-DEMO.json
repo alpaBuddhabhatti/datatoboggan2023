@@ -1,0 +1,9 @@
+{
+	"name": "First-DF-DEMO",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a4052c04-24b9-4d4b-9e0e-4e6cd731dcc5",
+		"tenantId": "c10d9100-7f58-4e3c-af7d-0cc0317096ea"
+	}
+}
