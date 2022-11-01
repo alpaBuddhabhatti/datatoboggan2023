@@ -76,7 +76,7 @@
 									"path": "$['catalog']['book'][0]['price']"
 								},
 								"sink": {
-									"type": "int",
+									"type": "double",
 									"ordinal": 4
 								}
 							},
@@ -105,15 +105,6 @@
 								"sink": {
 									"type": "datetime",
 									"ordinal": 7
-								}
-							},
-							{
-								"source": {
-									"path": "$['catalog']['book'][0]['@id']"
-								},
-								"sink": {
-									"type": "string",
-									"ordinal": 8
 								}
 							}
 						],
