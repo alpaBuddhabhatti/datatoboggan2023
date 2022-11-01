@@ -1,6 +1,9 @@
 {
 	"name": "df_Functions_Demo",
 	"properties": {
+		"folder": {
+			"name": "FUNCTIONS"
+		},
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
