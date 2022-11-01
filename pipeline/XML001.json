@@ -115,7 +115,10 @@
 				"inputs": [
 					{
 						"referenceName": "DS_COMPLEX_XML",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": "File1.xml"
+						}
 					}
 				],
 				"outputs": [
