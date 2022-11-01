@@ -13,8 +13,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "Bookdatedemo.xml",
-				"container": "movie-in"
+				"fileName": "File1.xml",
+				"container": "xmldemo"
 			}
 		}
 	}
