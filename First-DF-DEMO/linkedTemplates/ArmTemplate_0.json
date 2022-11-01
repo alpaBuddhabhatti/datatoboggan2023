@@ -56,6 +56,9 @@
 					"referenceName": "LS_ABLB",
 					"type": "LinkedServiceReference"
 				},
+				"folder": {
+					"name": "FUNCTIONS"
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
@@ -106,6 +109,9 @@
 					"referenceName": "LS_ABLB",
 					"type": "LinkedServiceReference"
 				},
+				"folder": {
+					"name": "FUNCTIONS"
+				},
 				"annotations": [],
 				"type": "Xml",
 				"typeProperties": {
@@ -125,6 +131,9 @@
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
 			"properties": {
+				"folder": {
+					"name": "FUNCTIONS"
+				},
 				"type": "MappingDataFlow",
 				"typeProperties": {
 					"sources": [
@@ -247,6 +256,9 @@
 				"policy": {
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "FUNCTIONS"
 				},
 				"annotations": []
 			},
