@@ -1,0 +1,18 @@
+{
+	"name": "DS_COMPLEX_XML",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ABLB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Xml",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Bookdatedemo.xml",
+				"container": "movie-in"
+			}
+		}
+	}
+}
