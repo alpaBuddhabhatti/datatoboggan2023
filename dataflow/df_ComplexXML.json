@@ -1,0 +1,17 @@
+{
+	"name": "df_ComplexXML",
+	"properties": {
+		"folder": {
+			"name": "XML"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				""
+			]
+		}
+	}
+}
