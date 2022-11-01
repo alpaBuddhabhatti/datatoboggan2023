@@ -118,7 +118,7 @@
 							}
 						],
 						"collectionReference": "$['catalog']['book']",
-						"mapComplexValuesToString": false
+						"mapComplexValuesToString": true
 					}
 				},
 				"inputs": [
