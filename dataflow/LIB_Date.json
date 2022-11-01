@@ -1,0 +1,15 @@
+{
+	"name": "LIB_Date",
+	"properties": {
+		"description": "This function has 2 arguments. Date or Date time filed + need to have only time or date time .\nbased on second arguments, it gives date or date time in varchar format",
+		"type": "UDFLibrary",
+		"typeProperties": {
+			"sources": [],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"GetDateVarchar(date, boolean) as string = iif(i2==true(),concat(substring(toString(i1),6,2),'/',substring(toString(i1),9,2),'/',substring(toString(i1),1,4)),concat(substring(toString(i1),6,2),'/',substring(toString(i1),9,2),'/',substring(toString(i1),1,4),' ',substring(toString(i1),12,8)))"
+			]
+		}
+	}
+}
