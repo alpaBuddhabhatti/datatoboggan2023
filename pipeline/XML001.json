@@ -100,20 +100,11 @@
 							},
 							{
 								"source": {
-									"path": "['datetime']"
-								},
-								"sink": {
-									"type": "String",
-									"ordinal": 7
-								}
-							},
-							{
-								"source": {
 									"path": "['@id']"
 								},
 								"sink": {
 									"type": "String",
-									"ordinal": 8
+									"ordinal": 7
 								}
 							}
 						],
