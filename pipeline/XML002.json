@@ -133,7 +133,10 @@
 				"outputs": [
 					{
 						"referenceName": "DS_CSV",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": "File2.xml"
+						}
 					}
 				]
 			}
