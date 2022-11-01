@@ -40,7 +40,85 @@
 							"fileExtension": ".txt"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['author']"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 1
+								}
+							},
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['title']"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 2
+								}
+							},
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['genre']"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 3
+								}
+							},
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['price']"
+								},
+								"sink": {
+									"type": "int",
+									"ordinal": 4
+								}
+							},
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['publish_date']"
+								},
+								"sink": {
+									"type": "date",
+									"ordinal": 5
+								}
+							},
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['description']"
+								},
+								"sink": {
+									"type": "string",
+									"ordinal": 6
+								}
+							},
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['datetime']"
+								},
+								"sink": {
+									"type": "datetime",
+									"ordinal": 7
+								}
+							},
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['@id']"
+								},
+								"sink": {
+									"type": "string",
+									"ordinal": 8
+								}
+							}
+						],
+						"collectionReference": ""
+					}
 				},
 				"inputs": [
 					{
