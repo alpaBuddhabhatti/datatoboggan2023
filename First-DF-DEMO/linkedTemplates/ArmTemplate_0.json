@@ -72,6 +72,231 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LIB_Date')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "This function has 2 arguments. Date or Date time filed + need to have only time or date time .\nbased on second arguments, it gives date or date time in varchar format",
+				"type": "UDFLibrary",
+				"typeProperties": {
+					"sources": [],
+					"sinks": [],
+					"transformations": [],
+					"scriptLines": [
+						"GetDateVarchar(timestamp, boolean) as string = iif(i2==true(),concat(substring(toString(i1),6,2),'/',substring(toString(i1),9,2),'/',substring(toString(i1),1,4)),concat(substring(toString(i1),6,2),'/',substring(toString(i1),9,2),'/',substring(toString(i1),1,4),' ',substring(toString(i1),12,8)))"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_CSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_ABLB",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "test.csv",
+						"container": "movie-in"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": false,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_ABLB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_XML')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_ABLB",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Xml",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Bookdatedemo.xml",
+						"container": "movie-in"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_ABLB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/df_Functions_Demo')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "DS_XML",
+								"type": "DatasetReference"
+							},
+							"name": "source"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "DS_CSV",
+								"type": "DatasetReference"
+							},
+							"name": "sinkBlob"
+						}
+					],
+					"transformations": [
+						{
+							"name": "derivedColumn"
+						},
+						{
+							"name": "flatten"
+						}
+					],
+					"udfLibraries": [
+						{
+							"referenceName": "LIB_Date",
+							"type": "DataFlowReference"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          catalog as (book as ({@id} as string, author as string, datetime as timestamp, description as string, genre as string, price as double, publish_date as date, title as string)[])",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false,",
+						"     validationMode: 'none',",
+						"     namespaces: false) ~> source",
+						"flatten derive(NewDate = GetDateVarchar(datetime,false()),",
+						"          NewDateTime = GetDateVarchar(datetime,true())) ~> derivedColumn",
+						"source foldDown(unroll(catalog.book, catalog.book),",
+						"     mapColumn(",
+						"          {@id} = catalog.book.{@id},",
+						"          author = catalog.book.author,",
+						"          datetime = catalog.book.datetime,",
+						"          description = catalog.book.description,",
+						"          genre = catalog.book.genre,",
+						"          price = catalog.book.price,",
+						"          publish_date = catalog.book.publish_date,",
+						"          title = catalog.book.title",
+						"     ),",
+						"     skipDuplicateMapInputs: false,",
+						"     skipDuplicateMapOutputs: false) ~> flatten",
+						"derivedColumn sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          Column_1 as string,",
+						"          Column_2 as string,",
+						"          Column_3 as string,",
+						"          Column_4 as string,",
+						"          Column_5 as string,",
+						"          Column_6 as string,",
+						"          Column_7 as string",
+						"     ),",
+						"     partitionFileNames:[('test.csv')],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> sinkBlob"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/LIB_Date')]",
+				"[concat(variables('factoryId'), '/datasets/DS_XML')]",
+				"[concat(variables('factoryId'), '/datasets/DS_CSV')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FunctionsDEMO')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Data flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "df_Functions_Demo",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source": {},
+									"sinkBlob": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/df_Functions_Demo')]"
+			]
 		}
 	]
 }
