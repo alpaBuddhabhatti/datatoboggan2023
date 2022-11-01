@@ -9,20 +9,17 @@
 						"referenceName": "DS_XML",
 						"type": "DatasetReference"
 					},
-					"name": "source"
+					"name": "source1"
 				}
 			],
 			"sinks": [],
 			"transformations": [],
 			"scriptLines": [
-				"source(output(",
-				"          catalog as (book as ({@id} as string, author as string, datetime as timestamp, description as string, genre as string, price as double, publish_date as date, title as string)[])",
-				"     ),",
-				"     allowSchemaDrift: true,",
+				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     validationMode: 'none',",
-				"     namespaces: false) ~> source"
+				"     namespaces: true) ~> source1"
 			]
 		}
 	}
