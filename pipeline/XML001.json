@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Copy Simple XML File",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -46,7 +46,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['catalog']['book'][0]['author']"
+									"path": "['author']"
 								},
 								"sink": {
 									"type": "String",
@@ -55,7 +55,7 @@
 							},
 							{
 								"source": {
-									"path": "$['catalog']['book'][0]['title']"
+									"path": "['title']"
 								},
 								"sink": {
 									"type": "String",
@@ -64,7 +64,7 @@
 							},
 							{
 								"source": {
-									"path": "$['catalog']['book'][0]['genre']"
+									"path": "['genre']"
 								},
 								"sink": {
 									"type": "String",
@@ -73,42 +73,52 @@
 							},
 							{
 								"source": {
-									"path": "$['catalog']['book'][0]['price']"
+									"path": "['price']"
 								},
 								"sink": {
-									"type": "double",
+									"type": "Double",
 									"ordinal": 4
 								}
 							},
 							{
 								"source": {
-									"path": "$['catalog']['book'][0]['publish_date']"
+									"path": "['publish_date']"
 								},
 								"sink": {
-									"type": "date",
+									"type": "String",
 									"ordinal": 5
 								}
 							},
 							{
 								"source": {
-									"path": "$['catalog']['book'][0]['description']"
+									"path": "['description']"
 								},
 								"sink": {
-									"type": "string",
+									"type": "String",
 									"ordinal": 6
 								}
 							},
 							{
 								"source": {
-									"path": "$['catalog']['book'][0]['datetime']"
+									"path": "['datetime']"
 								},
 								"sink": {
-									"type": "datetime",
+									"type": "String",
 									"ordinal": 7
+								}
+							},
+							{
+								"source": {
+									"path": "['@id']"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 8
 								}
 							}
 						],
-						"collectionReference": ""
+						"collectionReference": "$['catalog']['book']",
+						"mapComplexValuesToString": false
 					}
 				},
 				"inputs": [
