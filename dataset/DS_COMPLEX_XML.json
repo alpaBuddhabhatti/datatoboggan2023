@@ -5,6 +5,11 @@
 			"referenceName": "LS_ABLB",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "XML"
 		},
