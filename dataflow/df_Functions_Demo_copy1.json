@@ -13,20 +13,7 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [
-				{
-					"name": "derivedColumn1"
-				},
-				{
-					"name": "flatten1"
-				}
-			],
-			"udfLibraries": [
-				{
-					"referenceName": "LIB_Date",
-					"type": "DataFlowReference"
-				}
-			],
+			"transformations": [],
 			"scriptLines": [
 				"source(output(",
 				"          catalog as (book as ({@id} as string, author as string, datetime as timestamp, description as string, genre as string, price as double, publish_date as date, title as string)[])",
@@ -35,22 +22,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     validationMode: 'none',",
-				"     namespaces: false) ~> source",
-				"flatten1 derive(NewDate = GetDateVarchar(datetime,false()),",
-				"          NewDateTime = GetDateVarchar(datetime,true())) ~> derivedColumn1",
-				"source foldDown(unroll(catalog.book, catalog.book),",
-				"     mapColumn(",
-				"          {@id} = catalog.book.{@id},",
-				"          author = catalog.book.author,",
-				"          datetime = catalog.book.datetime,",
-				"          description = catalog.book.description,",
-				"          genre = catalog.book.genre,",
-				"          price = catalog.book.price,",
-				"          publish_date = catalog.book.publish_date,",
-				"          title = catalog.book.title",
-				"     ),",
-				"     skipDuplicateMapInputs: false,",
-				"     skipDuplicateMapOutputs: false) ~> flatten1"
+				"     namespaces: false) ~> source"
 			]
 		}
 	}
