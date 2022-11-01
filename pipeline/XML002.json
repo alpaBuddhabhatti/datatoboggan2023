@@ -100,7 +100,7 @@
 							},
 							{
 								"source": {
-									"path": "['datetime']"
+									"path": "['languages']['language']"
 								},
 								"sink": {
 									"type": "String",
