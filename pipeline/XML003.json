@@ -126,7 +126,7 @@
 						"referenceName": "DS_COMPLEX_XML",
 						"type": "DatasetReference",
 						"parameters": {
-							"FileName": "File2.xml"
+							"FileName": "File3.xml"
 						}
 					}
 				],
@@ -135,7 +135,7 @@
 						"referenceName": "DS_CSV",
 						"type": "DatasetReference",
 						"parameters": {
-							"FileName": "File2.xml"
+							"FileName": "File3.xml"
 						}
 					}
 				]
