@@ -46,7 +46,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['author']"
+									"path": "$['catalog']['book'][0]['author']"
 								},
 								"sink": {
 									"type": "String",
@@ -55,7 +55,7 @@
 							},
 							{
 								"source": {
-									"path": "['title']"
+									"path": "$['catalog']['book'][0]['title']"
 								},
 								"sink": {
 									"type": "String",
@@ -64,7 +64,7 @@
 							},
 							{
 								"source": {
-									"path": "['genre']"
+									"path": "$['catalog']['book'][0]['genre']"
 								},
 								"sink": {
 									"type": "String",
@@ -73,16 +73,16 @@
 							},
 							{
 								"source": {
-									"path": "['price']"
+									"path": "$['catalog']['book'][0]['price']"
 								},
 								"sink": {
-									"type": "Double",
+									"type": "String",
 									"ordinal": 4
 								}
 							},
 							{
 								"source": {
-									"path": "['publish_date']"
+									"path": "$['catalog']['book'][0]['publish_date']"
 								},
 								"sink": {
 									"type": "String",
@@ -91,7 +91,7 @@
 							},
 							{
 								"source": {
-									"path": "['description']"
+									"path": "$['catalog']['book'][0]['description']"
 								},
 								"sink": {
 									"type": "String",
@@ -100,7 +100,7 @@
 							},
 							{
 								"source": {
-									"path": "['languages']['language']"
+									"path": "$['catalog']['book'][0]['languages']['language']"
 								},
 								"sink": {
 									"type": "String",
@@ -109,7 +109,7 @@
 							},
 							{
 								"source": {
-									"path": "['@id']"
+									"path": "$['catalog']['book'][0]['@id']"
 								},
 								"sink": {
 									"type": "String",
@@ -117,7 +117,7 @@
 								}
 							}
 						],
-						"collectionReference": "$['catalog']['book']",
+						"collectionReference": "",
 						"mapComplexValuesToString": true
 					}
 				},
