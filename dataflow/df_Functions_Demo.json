@@ -18,15 +18,15 @@
 						"referenceName": "DS_CSV",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "sinkBlob"
 				}
 			],
 			"transformations": [
 				{
-					"name": "derivedColumn1"
+					"name": "derivedColumn"
 				},
 				{
-					"name": "flatten1"
+					"name": "flatten"
 				}
 			],
 			"udfLibraries": [
@@ -44,8 +44,8 @@
 				"     ignoreNoFilesFound: false,",
 				"     validationMode: 'none',",
 				"     namespaces: false) ~> source",
-				"flatten1 derive(NewDate = GetDateVarchar(datetime,false()),",
-				"          NewDateTime = GetDateVarchar(datetime,true())) ~> derivedColumn1",
+				"flatten derive(NewDate = GetDateVarchar(datetime,false()),",
+				"          NewDateTime = GetDateVarchar(datetime,true())) ~> derivedColumn",
 				"source foldDown(unroll(catalog.book, catalog.book),",
 				"     mapColumn(",
 				"          {@id} = catalog.book.{@id},",
@@ -58,8 +58,8 @@
 				"          title = catalog.book.title",
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
-				"     skipDuplicateMapOutputs: false) ~> flatten1",
-				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     skipDuplicateMapOutputs: false) ~> flatten",
+				"derivedColumn sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          Column_1 as string,",
@@ -73,7 +73,7 @@
 				"     partitionFileNames:[('test.csv')],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     partitionBy('hash', 1)) ~> sink1"
+				"     partitionBy('hash', 1)) ~> sinkBlob"
 			]
 		}
 	}
