@@ -17,12 +17,15 @@
 			],
 			"sinks": [
 				{
-					"name": "sink1"
+					"name": "sinkLangures"
 				}
 			],
 			"transformations": [
 				{
-					"name": "flatten1"
+					"name": "flattenLanguages"
+				},
+				{
+					"name": "flattenType"
 				}
 			],
 			"scriptLines": [
@@ -42,11 +45,17 @@
 				"          title = catalog.book.title",
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
-				"     skipDuplicateMapOutputs: false) ~> flatten1",
-				"flatten1 sink(allowSchemaDrift: true,",
+				"     skipDuplicateMapOutputs: false) ~> flattenLanguages",
+				"sourceXML foldDown(unroll(),",
+				"     mapColumn(",
+				"          catalog",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> flattenType",
+				"flattenLanguages sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true) ~> sinkLangures"
 			]
 		}
 	}
