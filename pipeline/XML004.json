@@ -76,7 +76,7 @@
 									"path": "$['catalog']['book'][0]['price']"
 								},
 								"sink": {
-									"type": "doubke",
+									"type": "double",
 									"ordinal": 4
 								}
 							},
