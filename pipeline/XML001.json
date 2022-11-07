@@ -126,7 +126,7 @@
 						"referenceName": "DS_CSV",
 						"type": "DatasetReference",
 						"parameters": {
-							"FileName": "File1.xml"
+							"FileName": "File1.csv"
 						}
 					}
 				]
