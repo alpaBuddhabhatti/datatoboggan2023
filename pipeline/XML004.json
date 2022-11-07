@@ -1,5 +1,5 @@
 {
-	"name": "XML003_copy1",
+	"name": "XML004",
 	"properties": {
 		"activities": [
 			{
@@ -76,7 +76,7 @@
 									"path": "$['catalog']['book'][0]['price']"
 								},
 								"sink": {
-									"type": "String",
+									"type": "doubke",
 									"ordinal": 4
 								}
 							},
@@ -85,7 +85,7 @@
 									"path": "$['catalog']['book'][0]['publish_date']"
 								},
 								"sink": {
-									"type": "String",
+									"type": "date",
 									"ordinal": 5
 								}
 							},
@@ -112,13 +112,12 @@
 									"path": "$['catalog']['book'][0]['@id']"
 								},
 								"sink": {
-									"type": "String",
 									"ordinal": 8
 								}
 							}
 						],
 						"collectionReference": "",
-						"mapComplexValuesToString": true
+						"mapComplexValuesToString": false
 					}
 				},
 				"inputs": [
@@ -135,7 +134,7 @@
 						"referenceName": "DS_CSV",
 						"type": "DatasetReference",
 						"parameters": {
-							"FileName": "File3.xml"
+							"FileName": "File4.csv"
 						}
 					}
 				]
