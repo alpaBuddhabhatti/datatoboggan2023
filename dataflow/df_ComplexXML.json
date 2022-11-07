@@ -46,7 +46,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
 				"     skipDuplicateMapOutputs: false) ~> flattenLanguages",
-				"sourceXML foldDown(unroll(catalog.book.types.type, catalog.book.types.type),",
+				"sourceXML foldDown(unroll(catalog.book.types.type),",
 				"     mapColumn(",
 				"          type = catalog.book.types.type,",
 				"          price = catalog.book.price,",
