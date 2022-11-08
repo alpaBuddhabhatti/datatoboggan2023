@@ -45,6 +45,7 @@
 									"path": "$['catalog']['book'][0]['author']"
 								},
 								"sink": {
+									"name": "c1",
 									"type": "String"
 								}
 							},
@@ -53,6 +54,7 @@
 									"path": "$['catalog']['book'][0]['title']"
 								},
 								"sink": {
+									"name": "c2",
 									"type": "String"
 								}
 							},
@@ -61,17 +63,8 @@
 									"path": "$['catalog']['book'][0]['languages']['language']"
 								},
 								"sink": {
+									"name": "c3",
 									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['catalog']['book'][0]['types']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['catalog']['book'][0]['@id']"
 								}
 							}
 						],
