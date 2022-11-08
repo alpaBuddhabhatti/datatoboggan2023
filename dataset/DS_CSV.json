@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "test.csv",
+				"fileName": "test.txt",
 				"container": "movie-in"
 			},
 			"columnDelimiter": ",",
