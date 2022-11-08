@@ -40,7 +40,30 @@
 							"fileExtension": ".txt"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['author']"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 1
+								}
+							},
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['@id']"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 2
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
