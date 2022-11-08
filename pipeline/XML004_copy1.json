@@ -68,7 +68,7 @@
 								}
 							}
 						],
-						"collectionReference": "",
+						"collectionReference": "$['catalog']['book']",
 						"mapComplexValuesToString": false
 					}
 				},
