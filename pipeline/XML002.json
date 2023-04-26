@@ -136,7 +136,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"filename": {
-								"value": "'file2.csv'",
+								"value": "file2.csv",
 								"type": "Expression"
 							}
 						}
