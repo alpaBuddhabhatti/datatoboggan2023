@@ -5,6 +5,11 @@
 			"referenceName": "LS_ASQL",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"tabName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [
@@ -23,7 +28,10 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "t1"
+			"table": {
+				"value": "@dataset().tabName",
+				"type": "Expression"
+			}
 		}
 	}
 }
