@@ -17,7 +17,27 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "df_ComplexXML",
-						"type": "DataFlowReference"
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"sourceXML": {
+								"FileName": {
+									"value": "File3.xml",
+									"type": "Expression"
+								}
+							},
+							"sinkBlobBookLanguage": {
+								"filename": {
+									"value": "file5_languages.csv",
+									"type": "Expression"
+								}
+							},
+							"sinkBlobBookType": {
+								"filename": {
+									"value": "file5_type.csv",
+									"type": "Expression"
+								}
+							}
+						}
 					},
 					"compute": {
 						"coreCount": 8,
