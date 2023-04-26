@@ -29,6 +29,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "sinkBlobBookType"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "sinkASQL"
 				}
 			],
 			"transformations": [
@@ -90,7 +97,23 @@
 				"          Column_7 as string",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sinkBlobBookType"
+				"     skipDuplicateMapOutputs: true) ~> sinkBlobBookType",
+				"flattenType sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          c1 as string,",
+				"          c2 as string,",
+				"          c3 as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinkASQL"
 			]
 		}
 	}
