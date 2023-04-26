@@ -49,8 +49,8 @@
 									"path": "$['catalog']['book'][0]['author']"
 								},
 								"sink": {
-									"type": "String",
-									"ordinal": 1
+									"name": "author",
+									"type": "String"
 								}
 							},
 							{
@@ -58,8 +58,8 @@
 									"path": "$['catalog']['book'][0]['title']"
 								},
 								"sink": {
-									"type": "String",
-									"ordinal": 2
+									"name": "title",
+									"type": "String"
 								}
 							},
 							{
@@ -67,8 +67,8 @@
 									"path": "$['catalog']['book'][0]['genre']"
 								},
 								"sink": {
-									"type": "String",
-									"ordinal": 3
+									"name": "genre",
+									"type": "String"
 								}
 							},
 							{
@@ -76,8 +76,8 @@
 									"path": "$['catalog']['book'][0]['price']"
 								},
 								"sink": {
-									"type": "double",
-									"ordinal": 4
+									"name": "price",
+									"type": "String"
 								}
 							},
 							{
@@ -85,8 +85,8 @@
 									"path": "$['catalog']['book'][0]['publish_date']"
 								},
 								"sink": {
-									"type": "date",
-									"ordinal": 5
+									"name": "publish_date",
+									"type": "String"
 								}
 							},
 							{
@@ -94,8 +94,8 @@
 									"path": "$['catalog']['book'][0]['description']"
 								},
 								"sink": {
-									"type": "String",
-									"ordinal": 6
+									"name": "description",
+									"type": "String"
 								}
 							},
 							{
@@ -103,8 +103,8 @@
 									"path": "$['catalog']['book'][0]['languages']['language']"
 								},
 								"sink": {
-									"type": "String",
-									"ordinal": 7
+									"name": "language",
+									"type": "String"
 								}
 							},
 							{
@@ -112,7 +112,17 @@
 									"path": "$['catalog']['book'][0]['@id']"
 								},
 								"sink": {
-									"ordinal": 8
+									"name": "id",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['$[\\'catalog\\'][\\'book\\'][0][\\'types\\'][\\'type\\']']"
+								},
+								"sink": {
+									"name": "type",
+									"type": "String"
 								}
 							}
 						],
