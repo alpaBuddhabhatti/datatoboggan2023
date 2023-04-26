@@ -133,10 +133,7 @@
 				"outputs": [
 					{
 						"referenceName": "DS_CSV",
-						"type": "DatasetReference",
-						"parameters": {
-							"FileName": "File3.csv"
-						}
+						"type": "DatasetReference"
 					}
 				]
 			}
