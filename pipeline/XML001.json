@@ -100,7 +100,7 @@
 							},
 							{
 								"source": {
-									"path": "['id']"
+									"path": "['@id']"
 								},
 								"sink": {
 									"name": "id",
