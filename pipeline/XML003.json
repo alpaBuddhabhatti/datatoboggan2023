@@ -115,6 +115,15 @@
 									"name": "id",
 									"type": "String"
 								}
+							},
+							{
+								"source": {
+									"path": "['types']['type']"
+								},
+								"sink": {
+									"name": "type",
+									"type": "String"
+								}
 							}
 						],
 						"collectionReference": "$['catalog']['book']",
