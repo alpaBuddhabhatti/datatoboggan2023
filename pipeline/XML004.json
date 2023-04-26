@@ -118,7 +118,7 @@
 							},
 							{
 								"source": {
-									"path": "$['$[\\'catalog\\'][\\'book\\'][0][\\'types\\'][\\'type\\']']"
+									"path": "$['catalog']['book'][0]['types']['type']"
 								},
 								"sink": {
 									"name": "type",
