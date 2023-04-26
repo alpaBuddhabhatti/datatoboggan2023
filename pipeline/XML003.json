@@ -133,7 +133,13 @@
 				"outputs": [
 					{
 						"referenceName": "DS_CSV",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": {
+								"value": "file3.xml",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
