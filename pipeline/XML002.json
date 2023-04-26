@@ -1,6 +1,7 @@
 {
 	"name": "XML002",
 	"properties": {
+		"description": "File2.xml has a single child item. File moves from xmldemo to xmldemo-out",
 		"activities": [
 			{
 				"name": "Copy Simple XML File",
