@@ -25,10 +25,7 @@
 				"container": "xmldemo-out"
 			},
 			"columnDelimiter": ",",
-			"escapeChar": {
-				"value": "|",
-				"type": "Expression"
-			},
+			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
