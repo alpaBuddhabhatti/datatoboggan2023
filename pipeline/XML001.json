@@ -125,7 +125,13 @@
 				"outputs": [
 					{
 						"referenceName": "DS_CSV",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": {
+								"value": "'file1.csv'",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
