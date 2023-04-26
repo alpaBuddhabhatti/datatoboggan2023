@@ -49,8 +49,7 @@
 									"path": "['author']"
 								},
 								"sink": {
-									"type": "String",
-									"ordinal": 1
+									"name": "author"
 								}
 							},
 							{
@@ -58,8 +57,8 @@
 									"path": "['title']"
 								},
 								"sink": {
-									"type": "String",
-									"ordinal": 2
+									"name": "title",
+									"type": "String"
 								}
 							},
 							{
@@ -67,8 +66,8 @@
 									"path": "['genre']"
 								},
 								"sink": {
-									"type": "String",
-									"ordinal": 3
+									"name": "genre",
+									"type": "String"
 								}
 							},
 							{
@@ -76,8 +75,8 @@
 									"path": "['price']"
 								},
 								"sink": {
-									"type": "Double",
-									"ordinal": 4
+									"name": "price",
+									"type": "String"
 								}
 							},
 							{
@@ -85,8 +84,8 @@
 									"path": "['publish_date']"
 								},
 								"sink": {
-									"type": "String",
-									"ordinal": 5
+									"name": "publish_date",
+									"type": "String"
 								}
 							},
 							{
@@ -94,8 +93,8 @@
 									"path": "['description']"
 								},
 								"sink": {
-									"type": "String",
-									"ordinal": 6
+									"name": "description",
+									"type": "String"
 								}
 							},
 							{
@@ -103,8 +102,8 @@
 									"path": "['languages']['language']"
 								},
 								"sink": {
-									"type": "String",
-									"ordinal": 7
+									"name": "language",
+									"type": "String"
 								}
 							},
 							{
@@ -112,8 +111,8 @@
 									"path": "['@id']"
 								},
 								"sink": {
-									"type": "String",
-									"ordinal": 8
+									"name": "id",
+									"type": "String"
 								}
 							}
 						],
@@ -133,10 +132,7 @@
 				"outputs": [
 					{
 						"referenceName": "DS_CSV",
-						"type": "DatasetReference",
-						"parameters": {
-							"FileName": "File2.csv"
-						}
+						"type": "DatasetReference"
 					}
 				]
 			}
