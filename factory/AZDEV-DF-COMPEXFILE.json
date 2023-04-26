@@ -1,0 +1,9 @@
+{
+	"name": "AZDEV-DF-COMPEXFILE",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "84cabc85-8561-4ca7-94f8-ea283bbdfa4f",
+		"tenantId": "c10d9100-7f58-4e3c-af7d-0cc0317096ea"
+	}
+}
