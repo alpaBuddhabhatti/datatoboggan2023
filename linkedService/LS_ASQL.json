@@ -1,0 +1,17 @@
+{
+	"name": "LS_ASQL",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "LS_KV",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "SQL-ConnectionString"
+			}
+		}
+	}
+}
