@@ -1,6 +1,7 @@
 {
 	"name": "XML001",
 	"properties": {
+		"description": "File1.xml file moves from xmldemo container to xmldemo-out.\nYou can select all columns or you can select few fields from source to sink.\nAlso, you can store result to Azure SQL table.",
 		"activities": [
 			{
 				"name": "Copy Simple XML File",
