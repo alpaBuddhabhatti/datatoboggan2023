@@ -49,7 +49,8 @@
 									"path": "['author']"
 								},
 								"sink": {
-									"name": "author"
+									"name": "author",
+									"type": "String"
 								}
 							},
 							{
