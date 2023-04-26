@@ -124,10 +124,7 @@
 				"outputs": [
 					{
 						"referenceName": "DS_CSV",
-						"type": "DatasetReference",
-						"parameters": {
-							"FileName": "File1.csv"
-						}
+						"type": "DatasetReference"
 					}
 				]
 			}
