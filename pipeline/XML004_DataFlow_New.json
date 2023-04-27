@@ -30,6 +30,12 @@
 									"value": "tblLangs",
 									"type": "Expression"
 								}
+							},
+							"sinkasqltypes": {
+								"tabName": {
+									"value": "tblTypes",
+									"type": "Expression"
+								}
 							}
 						}
 					},
