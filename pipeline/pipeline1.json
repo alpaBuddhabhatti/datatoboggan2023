@@ -124,7 +124,8 @@
 									"type": "String"
 								}
 							}
-						]
+						],
+						"collectionReference": "$['catalog']['book']"
 					}
 				},
 				"inputs": [
