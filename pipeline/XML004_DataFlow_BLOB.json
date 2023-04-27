@@ -37,6 +37,12 @@
 									"type": "Expression"
 								}
 							},
+							"sinkASQLType": {
+								"tabName": {
+									"value": "tblType",
+									"type": "Expression"
+								}
+							},
 							"sinkASQLLanguage": {
 								"tabName": {
 									"value": "tblLang",
