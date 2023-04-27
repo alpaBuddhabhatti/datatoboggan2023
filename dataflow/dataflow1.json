@@ -21,14 +21,14 @@
 						"referenceName": "AzureSqlTable1",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "sinkSQLTypes"
 				},
 				{
 					"dataset": {
 						"referenceName": "AzureSqlTable1",
 						"type": "DatasetReference"
 					},
-					"name": "sink2"
+					"name": "sinkSQLLang"
 				}
 			],
 			"transformations": [
@@ -36,10 +36,10 @@
 					"name": "flatten1"
 				},
 				{
-					"name": "select1"
+					"name": "types"
 				},
 				{
-					"name": "select2"
+					"name": "Lans"
 				}
 			],
 			"scriptLines": [
@@ -74,7 +74,7 @@
 				"          publish_date",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1",
+				"     skipDuplicateMapOutputs: true) ~> types",
 				"flatten1 select(mapColumn(",
 				"          author,",
 				"          description,",
@@ -84,8 +84,8 @@
 				"          ttype",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select2",
-				"select1 sink(allowSchemaDrift: true,",
+				"     skipDuplicateMapOutputs: true) ~> Lans",
+				"types sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          c1 as string,",
@@ -100,8 +100,8 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
-				"select2 sink(allowSchemaDrift: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinkSQLTypes",
+				"Lans sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          c1 as string,",
@@ -116,7 +116,7 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinkSQLLang"
 			]
 		}
 	}
