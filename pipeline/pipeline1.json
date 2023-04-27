@@ -39,7 +39,93 @@
 							"fileExtension": ".txt"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['author']"
+								},
+								"sink": {
+									"name": "author",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['title']"
+								},
+								"sink": {
+									"name": "title",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['genre']"
+								},
+								"sink": {
+									"name": "genre",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['price']"
+								},
+								"sink": {
+									"name": "price",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['publish_date']"
+								},
+								"sink": {
+									"name": "publish_date",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['description']"
+								},
+								"sink": {
+									"name": "description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['languages']['language']"
+								},
+								"sink": {
+									"name": "language",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['types']"
+								},
+								"sink": {
+									"name": "types",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['catalog']['book'][0]['@id']"
+								},
+								"sink": {
+									"name": "@@id",
+									"type": "String"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
