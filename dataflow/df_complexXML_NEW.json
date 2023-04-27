@@ -28,7 +28,7 @@
 						"referenceName": "AzureSqlTable1",
 						"type": "DatasetReference"
 					},
-					"name": "sinkSQLTypes"
+					"name": "sinkasqltypes"
 				}
 			],
 			"transformations": [
@@ -116,7 +116,7 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sinkSQLTypes"
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinkasqltypes"
 			]
 		}
 	}
