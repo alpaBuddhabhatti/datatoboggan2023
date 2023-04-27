@@ -25,13 +25,7 @@
 									"type": "Expression"
 								}
 							},
-							"sinkSQLTypes": {
-								"tabName": {
-									"value": "tbltypes",
-									"type": "Expression"
-								}
-							},
-							"sinkSQLLang": {
+							"sinkSQLTLanges": {
 								"tabName": {
 									"value": "tblLangs",
 									"type": "Expression"
