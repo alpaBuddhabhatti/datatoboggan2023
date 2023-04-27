@@ -21,14 +21,14 @@
 						"referenceName": "AzureSqlTable1",
 						"type": "DatasetReference"
 					},
-					"name": "sinkSQLTypes"
+					"name": "sinkSQLTLanges"
 				},
 				{
 					"dataset": {
 						"referenceName": "AzureSqlTable1",
 						"type": "DatasetReference"
 					},
-					"name": "sinkSQLLang"
+					"name": "sinkSQLTypes"
 				}
 			],
 			"transformations": [
@@ -36,10 +36,10 @@
 					"name": "flatten1"
 				},
 				{
-					"name": "types"
+					"name": "langes"
 				},
 				{
-					"name": "Lans"
+					"name": "types"
 				}
 			],
 			"scriptLines": [
@@ -74,7 +74,7 @@
 				"          publish_date",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> types",
+				"     skipDuplicateMapOutputs: true) ~> langes",
 				"flatten1 select(mapColumn(",
 				"          author,",
 				"          description,",
@@ -84,7 +84,23 @@
 				"          ttype",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> Lans",
+				"     skipDuplicateMapOutputs: true) ~> types",
+				"langes sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          c1 as string,",
+				"          c2 as string,",
+				"          c3 as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinkSQLTLanges",
 				"types sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
@@ -100,23 +116,7 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sinkSQLTypes",
-				"Lans sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     input(",
-				"          c1 as string,",
-				"          c2 as string,",
-				"          c3 as string",
-				"     ),",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     recreate:true,",
-				"     format: 'table',",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sinkSQLLang"
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinkSQLTypes"
 			]
 		}
 	}
