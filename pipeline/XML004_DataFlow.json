@@ -1,5 +1,5 @@
 {
-	"name": "XML004_DataFlow_Tables",
+	"name": "XML004_DataFlow",
 	"properties": {
 		"activities": [
 			{
@@ -40,6 +40,12 @@
 							"sinkASQLType": {
 								"tabName": {
 									"value": "tblType",
+									"type": "Expression"
+								}
+							},
+							"sinkASQLLanguage": {
+								"tabName": {
+									"value": "tblLang",
 									"type": "Expression"
 								}
 							}
