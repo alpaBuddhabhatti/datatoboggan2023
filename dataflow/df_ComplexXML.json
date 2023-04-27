@@ -38,6 +38,10 @@
 					"name": "sinkASQLType"
 				},
 				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
 					"name": "sinkASQLLanguage"
 				}
 			],
@@ -119,8 +123,19 @@
 				"     errorHandlingOption: 'stopOnFirstError') ~> sinkASQLType",
 				"flattenLanguages sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     input(",
+				"          c1 as string,",
+				"          c2 as string,",
+				"          c3 as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sinkASQLLanguage"
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinkASQLLanguage"
 			]
 		}
 	}
