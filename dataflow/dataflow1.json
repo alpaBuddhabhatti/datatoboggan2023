@@ -1,0 +1,51 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"folder": {
+			"name": "XML"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_COMPLEX_XML",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "flatten1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          catalog as (book as ({@id} as string, author as string, description as string, genre as string, languages as (language as string[]), price as double, publish_date as date, title as string, types as ({_value_} as string, type as string[]))[])",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     validationMode: 'none',",
+				"     namespaces: true,",
+				"     wildcardPaths:[('File3.xml')]) ~> source1",
+				"source1 foldDown(unrollMultiple(catalog.book,catalog.book.languages.language,catalog.book.types.type),",
+				"     mapColumn(",
+				"          catalog = catalog.book.{@id},",
+				"          author = catalog.book.author,",
+				"          description = catalog.book.description,",
+				"          genre = catalog.book.genre,",
+				"          language = catalog.book.languages.language,",
+				"          price = catalog.book.price,",
+				"          title = catalog.book.title,",
+				"          publish_date = catalog.book.publish_date,",
+				"          ttype = catalog.book.types.type",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> flatten1"
+			]
+		}
+	}
+}
