@@ -27,13 +27,13 @@
 							},
 							"sinkSQLTypes": {
 								"tabName": {
-									"value": "tblLang",
+									"value": "tbltypes",
 									"type": "Expression"
 								}
 							},
 							"sinkSQLLang": {
 								"tabName": {
-									"value": "tblType",
+									"value": "tblLangs",
 									"type": "Expression"
 								}
 							}
