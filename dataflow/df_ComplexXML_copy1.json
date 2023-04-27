@@ -1,0 +1,30 @@
+{
+	"name": "df_ComplexXML_copy1",
+	"properties": {
+		"folder": {
+			"name": "XML"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_COMPLEX_XML",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     validationMode: 'none',",
+				"     namespaces: true,",
+				"     wildcardPaths:[('File3.xml')]) ~> source1"
+			]
+		}
+	}
+}
