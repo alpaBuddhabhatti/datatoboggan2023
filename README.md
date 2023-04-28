@@ -2,12 +2,14 @@
 If you have an xml/json file and you would like to proccess file then you can do that very easily using Azure Data Factory or Azure Synapse Analytics Pipeline.
 Based on complexity of file you can use copy activity only or you need to use mapping data flow.
 
+Following steps need to perform.
+
 1. Following Azure Resources you need for this demo:
 
-1. Azure Key Valut
-2. Azure Storage Account 
-3. Azure SQL Database
-4. Azure Data Factory.
+          1. Azure Key Valut
+          2. Azure Storage Account 
+          3. Azure SQL Database
+          4. Azure Data Factory.
 
 2. once you above four resources created, you need to store secret to Key Valut.There are 2 secret you will have in your KV.
 3. You must give access policy in your Key Valut for your Azure Data Factory so your Azure Data Factory can access your Key Valut's secrets.
