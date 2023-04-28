@@ -18,6 +18,7 @@ Based on complexity of file you can use copy activity only or you need to use ma
 8. make sure your linked services is working by jsut edit linked services and click on "test connection" button
 9. run XML001 and check "xmldemo-out" container.
 10. run XML002 and check "xmldemo-out" container.
+11. run XML004_dataflow and check your database.
 
 
 
