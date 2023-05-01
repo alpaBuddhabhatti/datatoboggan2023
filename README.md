@@ -1,5 +1,36 @@
 # TrainingDemo
 
+TrainingDemo
+If you have an xml/json file and you would like to proccess file then you can do that very easily using Azure Data Factory or Azure Synapse Analytics Pipeline. Based on complexity of file you can use copy activity only or you need to use mapping data flow.
+
+Following steps need to perform.
+
+Following Azure Resources you need for this demo:
+
+   1. Azure Key Valut
+   2. Azure Storage Account 
+   3. Azure SQL Database
+   4. Azure Data Factory.
+once you above four resources created, you need to store secret to Key Valut.There are 2 secret you will have in your KV.
+
+You must give access policy in your Key Valut for your Azure Data Factory so your Azure Data Factory can access your Key Valut's secrets.
+
+Set up Git Repo for you ADF and get all files from this Repo.
+
+Create container to your storage account 'xmldemo'
+
+upload .xml files which you can doubload from this repo (File1.xml, File2.xml and File3.xml) to above container
+
+Create another container called 'xmldemo-out' which store file from execution of pipeline XML001 and XML002
+
+make sure your linked services is working by jsut edit linked services and click on "test connection" button
+
+run XML001 and check "xmldemo-out" container.
+
+run XML002 and check "xmldemo-out" container.
+
+run XML004_dataflow and check your database.
+
 File1.xml is very simple 1-1 mapping so copy activity is workingfor that
 File2.xml is simple file so copy activity works for it. it has an array with single item.
 File3.xml ia complex one. there are 2 diffrent arrays haivng multiple items
