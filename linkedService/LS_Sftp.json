@@ -1,0 +1,21 @@
+{
+	"name": "LS_Sftp",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "Sftp",
+		"typeProperties": {
+			"host": "192.168.0.105",
+			"port": 22,
+			"skipHostKeyValidation": false,
+			"hostKeyFingerprint": "IR@14af7e0a-b0af-4d95-8ee9-7a69c6ac91f8@AZDEV-DF-COMPEXFILE@ServiceEndpoint=azdev-df-compexfile.eastus.datafactory.azure.net@XLpXr9p9hKa06ne9XzpWUwcFKVWuMGi5QkFHj0ZJR2k=",
+			"authenticationType": "Basic",
+			"userName": "User",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJhZWZlOTRiOS0wMjBjLTQ3M2EtYTE5Ny00M2UwOGM0OGM1ZWUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
