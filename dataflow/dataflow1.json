@@ -16,7 +16,7 @@
 			"transformations": [],
 			"scriptLines": [
 				"source(output(",
-				"          alpa as string,",
+				"          Info as string,",
 				"          date as date,",
 				"          Ref as short,",
 				"          File as string",
