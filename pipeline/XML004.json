@@ -49,8 +49,8 @@
 									"path": "$['catalog']['book'][0]['author']"
 								},
 								"sink": {
-									"name": "author",
-									"type": "String"
+									"type": "String",
+									"ordinal": 1
 								}
 							},
 							{
@@ -58,8 +58,8 @@
 									"path": "$['catalog']['book'][0]['title']"
 								},
 								"sink": {
-									"name": "title",
-									"type": "String"
+									"type": "String",
+									"ordinal": 2
 								}
 							},
 							{
@@ -67,8 +67,8 @@
 									"path": "$['catalog']['book'][0]['genre']"
 								},
 								"sink": {
-									"name": "genre",
-									"type": "String"
+									"type": "String",
+									"ordinal": 3
 								}
 							},
 							{
@@ -76,8 +76,8 @@
 									"path": "$['catalog']['book'][0]['price']"
 								},
 								"sink": {
-									"name": "price",
-									"type": "String"
+									"type": "String",
+									"ordinal": 4
 								}
 							},
 							{
@@ -85,8 +85,8 @@
 									"path": "$['catalog']['book'][0]['publish_date']"
 								},
 								"sink": {
-									"name": "publish_date",
-									"type": "String"
+									"type": "String",
+									"ordinal": 5
 								}
 							},
 							{
@@ -94,8 +94,8 @@
 									"path": "$['catalog']['book'][0]['description']"
 								},
 								"sink": {
-									"name": "description",
-									"type": "String"
+									"type": "String",
+									"ordinal": 6
 								}
 							},
 							{
@@ -103,8 +103,8 @@
 									"path": "$['catalog']['book'][0]['languages']['language']"
 								},
 								"sink": {
-									"name": "language",
-									"type": "String"
+									"type": "String",
+									"ordinal": 7
 								}
 							},
 							{
@@ -112,8 +112,8 @@
 									"path": "$['catalog']['book'][0]['@id']"
 								},
 								"sink": {
-									"name": "id",
-									"type": "String"
+									"type": "String",
+									"ordinal": 8
 								}
 							},
 							{
@@ -121,8 +121,8 @@
 									"path": "$['catalog']['book'][0]['types']['type']"
 								},
 								"sink": {
-									"name": "type",
-									"type": "String"
+									"type": "String",
+									"ordinal": 9
 								}
 							}
 						],

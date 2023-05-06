@@ -25,18 +25,6 @@
 									"type": "Expression"
 								}
 							},
-							"sinkBlobBookLanguage": {
-								"filename": {
-									"value": "file5_languages.csv",
-									"type": "Expression"
-								}
-							},
-							"sinkBlobBookType": {
-								"filename": {
-									"value": "file5_type.csv",
-									"type": "Expression"
-								}
-							},
 							"sinkASQLType": {
 								"tabName": {
 									"value": "tblType",

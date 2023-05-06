@@ -50,8 +50,8 @@
 									"path": "['author']"
 								},
 								"sink": {
-									"name": "author",
-									"type": "String"
+									"type": "String",
+									"ordinal": 1
 								}
 							},
 							{
@@ -59,8 +59,8 @@
 									"path": "['title']"
 								},
 								"sink": {
-									"name": "title",
-									"type": "String"
+									"type": "String",
+									"ordinal": 2
 								}
 							},
 							{
@@ -68,8 +68,8 @@
 									"path": "['genre']"
 								},
 								"sink": {
-									"name": "genre",
-									"type": "String"
+									"type": "String",
+									"ordinal": 3
 								}
 							},
 							{
@@ -77,8 +77,8 @@
 									"path": "['price']"
 								},
 								"sink": {
-									"name": "price",
-									"type": "String"
+									"type": "String",
+									"ordinal": 4
 								}
 							},
 							{
@@ -86,8 +86,8 @@
 									"path": "['publish_date']"
 								},
 								"sink": {
-									"name": "publish_date",
-									"type": "String"
+									"type": "String",
+									"ordinal": 5
 								}
 							},
 							{
@@ -95,8 +95,8 @@
 									"path": "['description']"
 								},
 								"sink": {
-									"name": "description",
-									"type": "String"
+									"type": "String",
+									"ordinal": 6
 								}
 							},
 							{
@@ -104,8 +104,8 @@
 									"path": "['@id']"
 								},
 								"sink": {
-									"name": "id",
-									"type": "String"
+									"type": "String",
+									"ordinal": 7
 								}
 							}
 						],
