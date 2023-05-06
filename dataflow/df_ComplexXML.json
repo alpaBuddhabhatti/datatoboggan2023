@@ -32,14 +32,14 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "AzureSqlTable1",
+						"referenceName": "DS_ASQL",
 						"type": "DatasetReference"
 					},
 					"name": "sinkASQLType"
 				},
 				{
 					"dataset": {
-						"referenceName": "AzureSqlTable1",
+						"referenceName": "DS_ASQL",
 						"type": "DatasetReference"
 					},
 					"name": "sinkASQLLanguage"

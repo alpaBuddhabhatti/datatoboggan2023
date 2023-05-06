@@ -18,14 +18,14 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "AzureSqlTable1",
+						"referenceName": "DS_ASQL",
 						"type": "DatasetReference"
 					},
 					"name": "sinkSQLTLanges"
 				},
 				{
 					"dataset": {
-						"referenceName": "AzureSqlTable1",
+						"referenceName": "DS_ASQL",
 						"type": "DatasetReference"
 					},
 					"name": "sinkasqltypes"

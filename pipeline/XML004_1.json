@@ -83,7 +83,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureSqlTable1",
+						"referenceName": "DS_ASQL",
 						"type": "DatasetReference",
 						"parameters": {
 							"tabName": "tbltest"

@@ -5,9 +5,6 @@
 			"referenceName": "LS_ABLB",
 			"type": "LinkedServiceReference"
 		},
-		"folder": {
-			"name": "XML"
-		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
