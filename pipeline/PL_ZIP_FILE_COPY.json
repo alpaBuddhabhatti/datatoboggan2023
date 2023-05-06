@@ -1,5 +1,5 @@
 {
-	"name": "pipeline2_copy1",
+	"name": "PL_ZIP_FILE_COPY",
 	"properties": {
 		"activities": [
 			{
@@ -20,7 +20,7 @@
 						"storeSettings": {
 							"type": "SftpReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*.*",
+							"wildcardFileName": "data1.zip",
 							"enablePartitionDiscovery": false,
 							"disableChunking": false
 						},
