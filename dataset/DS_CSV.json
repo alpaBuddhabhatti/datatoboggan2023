@@ -13,7 +13,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "moviedb.zip",
 				"container": "xmldemo-out"
 			},
 			"columnDelimiter": ",",
