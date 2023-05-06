@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "AZDEV-DF-COMPEXFILE"
+		},
+		"LS_ABLB_properties_typeProperties_connectionString_secretName": {
+			"value": "ABLB-Connectionstring"
+		},
+		"LS_ASQL_properties_typeProperties_connectionString_secretName": {
+			"value": "SQL-ConnectionString"
+		},
+		"LS_KV_properties_typeProperties_baseUrl": {
+			"value": "https://AZDEV-KV.vault.azure.net/"
+		},
+		"LS_SFTP_properties_typeProperties_host": {
+			"value": "192.168.0.105"
+		},
+		"LS_SFTP_properties_typeProperties_hostKeyFingerprint": {
+			"value": "ssh-ed25519 32 67:68:ef:79:f4:7e:40:96:f2:4e:5a:22:ba:d3:30:e8"
+		},
+		"LS_SFTP_properties_typeProperties_userName": {
+			"value": "User"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

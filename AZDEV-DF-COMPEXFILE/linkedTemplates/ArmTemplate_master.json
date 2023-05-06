@@ -1,0 +1,104 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "AZDEV-DF-COMPEXFILE"
+		},
+		"LS_ABLB_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "ABLB-Connectionstring"
+		},
+		"LS_ASQL_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "SQL-ConnectionString"
+		},
+		"LS_KV_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://AZDEV-KV.vault.azure.net/"
+		},
+		"LS_SFTP_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "192.168.0.105"
+		},
+		"LS_SFTP_properties_typeProperties_hostKeyFingerprint": {
+			"type": "string",
+			"defaultValue": "ssh-ed25519 32 67:68:ef:79:f4:7e:40:96:f2:4e:5a:22:ba:d3:30:e8"
+		},
+		"LS_SFTP_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "User"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "AZDEV-DF-COMPEXFILE_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LS_KV_properties_typeProperties_baseUrl": {
+						"value": "[parameters('LS_KV_properties_typeProperties_baseUrl')]"
+					},
+					"LS_ABLB_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('LS_ABLB_properties_typeProperties_connectionString_secretName')]"
+					},
+					"LS_ASQL_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('LS_ASQL_properties_typeProperties_connectionString_secretName')]"
+					},
+					"LS_SFTP_properties_typeProperties_host": {
+						"value": "[parameters('LS_SFTP_properties_typeProperties_host')]"
+					},
+					"LS_SFTP_properties_typeProperties_hostKeyFingerprint": {
+						"value": "[parameters('LS_SFTP_properties_typeProperties_hostKeyFingerprint')]"
+					},
+					"LS_SFTP_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SFTP_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "AZDEV-DF-COMPEXFILE_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'AZDEV-DF-COMPEXFILE_ArmTemplate_0')]"
+			]
+		}
+	]
+}
