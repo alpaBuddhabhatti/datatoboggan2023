@@ -17,9 +17,9 @@
 			"scriptLines": [
 				"source(output(",
 				"          alpa as string,",
-				"          {_col1_} as date,",
-				"          {_col2_} as short,",
-				"          {_col3_} as string",
+				"          date as date,",
+				"          Ref as short,",
+				"          File as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
