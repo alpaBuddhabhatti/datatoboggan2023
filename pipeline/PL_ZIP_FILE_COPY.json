@@ -61,7 +61,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DS_CSV",
+						"referenceName": "DS_BLOB_ZIP",
 						"type": "DatasetReference"
 					}
 				]
