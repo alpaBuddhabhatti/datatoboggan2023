@@ -1,0 +1,23 @@
+{
+	"name": "DS_ABLB_ZIP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SFTP",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "SftpLocation",
+				"fileName": "data1.zip",
+				"folderPath": "/C:/Users/User/source/ADF"
+			},
+			"columnDelimiter": ",",
+			"compressionCodec": "ZipDeflate",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
