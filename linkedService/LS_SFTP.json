@@ -1,0 +1,27 @@
+{
+	"name": "LS_SFTP",
+	"properties": {
+		"annotations": [],
+		"type": "Sftp",
+		"typeProperties": {
+			"host": "192.168.0.105",
+			"port": 22,
+			"skipHostKeyValidation": false,
+			"hostKeyFingerprint": "ssh-ed25519 32 67:68:ef:79:f4:7e:40:96:f2:4e:5a:22:ba:d3:30:e8",
+			"authenticationType": "Basic",
+			"userName": "User",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "LS_KV",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "SFTP-User-PASS"
+			}
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
