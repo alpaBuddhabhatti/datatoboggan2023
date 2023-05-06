@@ -9,7 +9,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "DS_COMPLEX_XML",
+						"referenceName": "DS_COMPLEX_XML_1",
 						"type": "DatasetReference"
 					},
 					"name": "sourceXML"
