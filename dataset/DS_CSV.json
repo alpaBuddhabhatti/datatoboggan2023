@@ -5,6 +5,11 @@
 			"referenceName": "LS_ABLB",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"fileName": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "XML"
 		},
@@ -13,6 +18,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "MovieDB.csv",
 				"container": "xmldemo-out"
 			},
 			"columnDelimiter": ",",
