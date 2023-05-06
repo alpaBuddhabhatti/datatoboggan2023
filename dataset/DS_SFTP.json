@@ -2,7 +2,7 @@
 	"name": "DS_SFTP",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "Sftp1",
+			"referenceName": "LS_SFTP",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
