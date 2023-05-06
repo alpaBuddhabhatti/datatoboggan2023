@@ -84,7 +84,10 @@
 				"outputs": [
 					{
 						"referenceName": "AzureSqlTable1",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"tabName": "tbltest"
+						}
 					}
 				]
 			}
