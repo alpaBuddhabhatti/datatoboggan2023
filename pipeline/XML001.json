@@ -127,8 +127,8 @@
 						"referenceName": "DS_CSV",
 						"type": "DatasetReference",
 						"parameters": {
-							"filename": {
-								"value": "file1.csv",
+							"fileName": {
+								"value": "File1.csv",
 								"type": "Expression"
 							}
 						}
