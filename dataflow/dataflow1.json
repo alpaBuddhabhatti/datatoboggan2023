@@ -34,7 +34,7 @@
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     wildcardPaths:[('*.pdf')]) ~> source2"
+				"     wildcardPaths:[('property_1.pdf')]) ~> source2"
 			]
 		}
 	}
