@@ -782,7 +782,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "AzureSqlTable1",
+								"referenceName": "DS_ASQL",
 								"type": "DatasetReference",
 								"parameters": {
 									"tabName": "tbltest"
@@ -802,7 +802,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/DS_COMPLEX_XML_1')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSqlTable1')]"
+				"[concat(variables('factoryId'), '/datasets/DS_ASQL')]"
 			]
 		},
 		{
@@ -951,7 +951,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
+			"name": "[concat(parameters('factoryName'), '/DS_ASQL')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1214,14 +1214,14 @@
 						},
 						{
 							"dataset": {
-								"referenceName": "AzureSqlTable1",
+								"referenceName": "DS_ASQL",
 								"type": "DatasetReference"
 							},
 							"name": "sinkASQLType"
 						},
 						{
 							"dataset": {
-								"referenceName": "AzureSqlTable1",
+								"referenceName": "DS_ASQL",
 								"type": "DatasetReference"
 							},
 							"name": "sinkASQLLanguage"
@@ -1310,7 +1310,7 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/DS_COMPLEX_XML_1')]",
 				"[concat(variables('factoryId'), '/datasets/DS_CSV')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSqlTable1')]"
+				"[concat(variables('factoryId'), '/datasets/DS_ASQL')]"
 			]
 		},
 		{
@@ -1335,14 +1335,14 @@
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "AzureSqlTable1",
+								"referenceName": "DS_ASQL",
 								"type": "DatasetReference"
 							},
 							"name": "sinkSQLTLanges"
 						},
 						{
 							"dataset": {
-								"referenceName": "AzureSqlTable1",
+								"referenceName": "DS_ASQL",
 								"type": "DatasetReference"
 							},
 							"name": "sinkasqltypes"
@@ -1437,7 +1437,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/DS_COMPLEX_XML_1')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSqlTable1')]"
+				"[concat(variables('factoryId'), '/datasets/DS_ASQL')]"
 			]
 		},
 		{
@@ -1561,57 +1561,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DS_ABLB_ZIP')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_SFTP",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "SftpLocation",
-						"fileName": "data1.zip",
-						"folderPath": "/C:/Users/User/source/ADF"
-					},
-					"columnDelimiter": ",",
-					"compressionCodec": "ZipDeflate",
-					"escapeChar": "\\",
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_SFTP')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_SFTP_BINARY')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_SFTP",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "SftpLocation",
-						"fileName": "data1.zip",
-						"folderPath": "/C:/Users/User/source/ADF"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_SFTP')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/DS_BLOB_ZIP')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1619,9 +1568,6 @@
 				"linkedServiceName": {
 					"referenceName": "LS_ABLB",
 					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "XML"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
