@@ -32,10 +32,10 @@
 					"name": "join1"
 				},
 				{
-					"name": "surrogateKey1"
+					"name": "aggregate1"
 				},
 				{
-					"name": "aggregate1"
+					"name": "derivedColumn2"
 				}
 			],
 			"scriptLines": [
@@ -55,20 +55,17 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     rowUrlColumn: ('filename'),",
-				"     wildcardPaths:[('/*.pdf')]) ~> source2",
+				"     rowUrlColumn: ('filename')) ~> source2",
 				"source2 derive(filename = replace(split(filename, '/')[4],'.pdf',''),",
 				"          pdfdata = toBase64(pdf_content)) ~> derivedColumn1",
-				"surrogateKey1, source1 join(filename == File,",
+				"derivedColumn2, source1 join(filename == File,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> join1",
-				"aggregate1 keyGenerate(output(Rownumber as long),",
-				"     startAt: 1L,",
-				"     stepValue: 1L) ~> surrogateKey1",
 				"derivedColumn1 aggregate(groupBy(filename),",
-				"     pdfdata = count(pdfdata)) ~> aggregate1",
+				"     column1 = collect(pdfdata)) ~> aggregate1",
+				"aggregate1 derive(column2 = toBase64(toString(column1))) ~> derivedColumn2",
 				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
