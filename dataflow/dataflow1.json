@@ -20,7 +20,11 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          Info as string,",
@@ -30,11 +34,13 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1",
+				"     ignoreNoFilesFound: false,",
+				"     rowUrlColumn: ('filename')) ~> source1",
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     wildcardPaths:[('property_1.pdf')]) ~> source2"
+				"     rowUrlColumn: ('filename')) ~> source2",
+				"source2 derive(Filename = ERROR_FUNCTION('')) ~> derivedColumn1"
 			]
 		}
 	}
