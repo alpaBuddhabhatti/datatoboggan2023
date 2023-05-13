@@ -10,10 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": {
-					"value": "*.pdf",
-					"type": "Expression"
-				},
 				"folderPath": "data1.zip/data1",
 				"container": "xmldemo-out"
 			},
