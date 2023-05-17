@@ -115,7 +115,26 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "https://azdevstor.blob.core.windows.net/xmldemo-out/Message.json",
+						"type": "Expression"
+					},
+					"method": "PUT",
+					"headers": {
+						"x-ms-version": "2017-11-09",
+						"x-ms-blob-type": "BlockBlob"
+					},
+					"body": {
+						"value": "{}",
+						"type": "Expression"
+					},
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://storage.azure.com/"
+					}
+				}
 			}
 		],
 		"folder": {
