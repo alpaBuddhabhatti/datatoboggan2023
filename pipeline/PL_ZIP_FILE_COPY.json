@@ -20,7 +20,7 @@
 						"storeSettings": {
 							"type": "SftpReadSettings",
 							"recursive": true,
-							"wildcardFileName": "data1.zip",
+							"wildcardFileName": "Scan.Property.Data.zip",
 							"enablePartitionDiscovery": false,
 							"disableChunking": false
 						},
