@@ -98,7 +98,7 @@
 				}
 			},
 			{
-				"name": "Web1",
+				"name": "RestAPICALL",
 				"type": "WebActivity",
 				"dependsOn": [
 					{
