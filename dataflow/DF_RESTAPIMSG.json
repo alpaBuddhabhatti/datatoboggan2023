@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "DF_RESTAPIMSG",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
