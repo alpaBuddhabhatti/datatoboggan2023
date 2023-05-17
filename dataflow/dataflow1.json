@@ -9,14 +9,14 @@
 						"referenceName": "DS_ABLB_CSV",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "Metadata"
 				},
 				{
 					"dataset": {
 						"referenceName": "DelimitedText1",
 						"type": "DatasetReference"
 					},
-					"name": "source2"
+					"name": "PDFFiles"
 				}
 			],
 			"sinks": [
@@ -30,13 +30,13 @@
 			],
 			"transformations": [
 				{
-					"name": "derivedColumn1"
+					"name": "derivedColumn"
 				},
 				{
 					"name": "join1"
 				},
 				{
-					"name": "aggregate1"
+					"name": "aggregate"
 				},
 				{
 					"name": "derivedColumn2"
@@ -51,7 +51,7 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1",
+				"     ignoreNoFilesFound: false) ~> Metadata",
 				"source(output(",
 				"          pdf_content as string,",
 				"          filename as string",
@@ -59,17 +59,17 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     rowUrlColumn: ('filename')) ~> source2",
-				"source2 derive(filename = replace(split(filename, '/')[4],'.pdf',''),",
-				"          pdfdata = toBase64(pdf_content)) ~> derivedColumn1",
-				"derivedColumn2, source1 join(filename == File,",
+				"     rowUrlColumn: ('filename')) ~> PDFFiles",
+				"PDFFiles derive(filename = replace(split(filename, '/')[4],'.pdf',''),",
+				"          pdfdata = toBase64(pdf_content)) ~> derivedColumn",
+				"derivedColumn2, Metadata join(filename == File,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> join1",
-				"derivedColumn1 aggregate(groupBy(filename),",
-				"     column1 = collect(pdfdata)) ~> aggregate1",
-				"aggregate1 derive(column2 = toBase64(toString(column1))) ~> derivedColumn2",
+				"derivedColumn aggregate(groupBy(filename),",
+				"     column1 = collect(pdfdata)) ~> aggregate",
+				"aggregate derive(column2 = toBase64(toString(column1))) ~> derivedColumn2",
 				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:[('msg.json')],",
