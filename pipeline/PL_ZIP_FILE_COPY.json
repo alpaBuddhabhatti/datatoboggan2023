@@ -127,7 +127,7 @@
 						"x-ms-blob-type": "BlockBlob"
 					},
 					"body": {
-						"value": "@activity('Data flow - API Json Message').output.runStatus.metrics.sink1.details",
+						"value": "{}",
 						"type": "Expression"
 					},
 					"authentication": {
