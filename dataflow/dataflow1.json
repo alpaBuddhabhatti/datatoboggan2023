@@ -72,9 +72,11 @@
 				"aggregate1 derive(column2 = toBase64(toString(column1))) ~> derivedColumn2",
 				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     partitionFileNames:[('msg.json')],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     saveOrder: 1,",
+				"     partitionBy('hash', 1),",
 				"     format: 'inline') ~> sink1"
 			]
 		}
