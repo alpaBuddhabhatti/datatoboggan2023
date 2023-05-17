@@ -25,7 +25,7 @@
 						"referenceName": "DS_JSON",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "sink"
 				}
 			],
 			"transformations": [
@@ -33,13 +33,13 @@
 					"name": "derivedColumn"
 				},
 				{
-					"name": "join1"
+					"name": "joinMetadataPDFFiles"
 				},
 				{
 					"name": "aggregate"
 				},
 				{
-					"name": "derivedColumn2"
+					"name": "derivedColumnBase64"
 				}
 			],
 			"scriptLines": [
@@ -62,22 +62,22 @@
 				"     rowUrlColumn: ('filename')) ~> PDFFiles",
 				"PDFFiles derive(filename = replace(split(filename, '/')[4],'.pdf',''),",
 				"          pdfdata = toBase64(pdf_content)) ~> derivedColumn",
-				"derivedColumn2, Metadata join(filename == File,",
+				"derivedColumnBase64, Metadata join(filename == File,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
-				"     broadcast: 'auto')~> join1",
+				"     broadcast: 'auto')~> joinMetadataPDFFiles",
 				"derivedColumn aggregate(groupBy(filename),",
 				"     pdfFileDataInBase64 = collect(pdfdata)) ~> aggregate",
-				"aggregate derive(PDFBase64 = toString(pdfFileDataInBase64)) ~> derivedColumn2",
-				"join1 sink(allowSchemaDrift: true,",
+				"aggregate derive(PDFBase64 = toString(pdfFileDataInBase64)) ~> derivedColumnBase64",
+				"joinMetadataPDFFiles sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:[('msg.json')],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     saveOrder: 1,",
 				"     partitionBy('hash', 1),",
-				"     format: 'inline') ~> sink1"
+				"     format: 'inline') ~> sink"
 			]
 		}
 	}
