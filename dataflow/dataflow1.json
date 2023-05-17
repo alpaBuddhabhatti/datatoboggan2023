@@ -73,7 +73,14 @@
 				"     store: 'cache',",
 				"     format: 'inline',",
 				"     output: false,",
-				"     saveOrder: 1) ~> sink1"
+				"     saveOrder: 1,",
+				"     mapColumn(",
+				"          filename,",
+				"          column2,",
+				"          Info,",
+				"          Ref,",
+				"          File",
+				"     )) ~> sink1"
 			]
 		}
 	}
