@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "SFTP_TO_BLOB",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -67,11 +67,11 @@
 				]
 			},
 			{
-				"name": "Data flow1",
+				"name": "Data flow - API Json Message",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "Copy data1",
+						"activity": "SFTP_TO_BLOB",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -102,7 +102,7 @@
 				"type": "WebActivity",
 				"dependsOn": [
 					{
-						"activity": "Data flow1",
+						"activity": "Data flow - API Json Message",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -127,7 +127,7 @@
 						"x-ms-blob-type": "BlockBlob"
 					},
 					"body": {
-						"value": "@activity('Data flow1').output.runStatus.metrics.sink1",
+						"value": "@activity('Data flow - API Json Message').output.runStatus.metrics.sink1.output",
 						"type": "Expression"
 					},
 					"authentication": {
