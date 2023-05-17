@@ -21,6 +21,10 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "DS_JSON",
+						"type": "DatasetReference"
+					},
 					"name": "sink1"
 				}
 			],
@@ -70,17 +74,8 @@
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     store: 'cache',",
-				"     format: 'inline',",
-				"     output: false,",
 				"     saveOrder: 1,",
-				"     mapColumn(",
-				"          filename,",
-				"          column2,",
-				"          Info,",
-				"          Ref,",
-				"          File",
-				"     )) ~> sink1"
+				"     format: 'inline') ~> sink1"
 			]
 		}
 	}
