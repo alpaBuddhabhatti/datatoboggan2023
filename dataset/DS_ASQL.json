@@ -10,6 +10,9 @@
 				"type": "string"
 			}
 		},
+		"folder": {
+			"name": "Other"
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [

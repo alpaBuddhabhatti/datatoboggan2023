@@ -5,6 +5,9 @@
 			"referenceName": "LS_SFTP",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "Zip"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {

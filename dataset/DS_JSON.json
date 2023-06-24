@@ -5,6 +5,9 @@
 			"referenceName": "LS_ABLB",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "Zip"
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
