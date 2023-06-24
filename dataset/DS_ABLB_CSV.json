@@ -10,8 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "Metadata.csv",
-				"folderPath": "data1.zip/data1",
+				"folderPath": "Scan.Property.Data.zip/Scan.Property.Data",
 				"container": "zipdemo-in"
 			},
 			"columnDelimiter": ",",
