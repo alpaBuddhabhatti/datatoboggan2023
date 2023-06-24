@@ -45,7 +45,7 @@
 			"scriptLines": [
 				"source(output(",
 				"          Info as string,",
-				"          date as date,",
+				"          date as string,",
 				"          Ref as short,",
 				"          File as string",
 				"     ),",
