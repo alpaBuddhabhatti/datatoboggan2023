@@ -13,6 +13,589 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/DF_RESTAPIMSG')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "DS_ABLB_CSV",
+								"type": "DatasetReference"
+							},
+							"name": "Metadata"
+						},
+						{
+							"dataset": {
+								"referenceName": "DelimitedText1",
+								"type": "DatasetReference"
+							},
+							"name": "PDFFiles"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "DS_JSON",
+								"type": "DatasetReference"
+							},
+							"name": "sink"
+						}
+					],
+					"transformations": [
+						{
+							"name": "derivedColumn"
+						},
+						{
+							"name": "joinMetadataPDFFiles"
+						},
+						{
+							"name": "aggregate"
+						},
+						{
+							"name": "derivedColumnBase64"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          Info as string,",
+						"          date as string,",
+						"          Ref as short,",
+						"          File as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> Metadata",
+						"source(output(",
+						"          pdf_content as string,",
+						"          filename as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false,",
+						"     rowUrlColumn: ('filename')) ~> PDFFiles",
+						"PDFFiles derive(filename = replace(split(filename, '/')[4],'.pdf',''),",
+						"          pdfdata = toBase64(pdf_content)) ~> derivedColumn",
+						"derivedColumnBase64, Metadata join(filename == File,",
+						"     joinType:'inner',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> joinMetadataPDFFiles",
+						"derivedColumn aggregate(groupBy(filename),",
+						"     pdfFileDataInBase64 = collect(pdfdata)) ~> aggregate",
+						"aggregate derive(PDFBase64 = toString(pdfFileDataInBase64)) ~> derivedColumnBase64",
+						"joinMetadataPDFFiles sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     partitionFileNames:[('msg.json')],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     saveOrder: 1,",
+						"     partitionBy('hash', 1),",
+						"     format: 'inline') ~> sink"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/df_ComplexXML')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"folder": {
+					"name": "XML"
+				},
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "DS_COMPLEX_XML_1",
+								"type": "DatasetReference"
+							},
+							"name": "sourceXML"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "DS_CSV",
+								"type": "DatasetReference"
+							},
+							"name": "sinkBlobBookLanguage"
+						},
+						{
+							"dataset": {
+								"referenceName": "DS_CSV",
+								"type": "DatasetReference"
+							},
+							"name": "sinkBlobBookType"
+						},
+						{
+							"dataset": {
+								"referenceName": "DS_ASQL",
+								"type": "DatasetReference"
+							},
+							"name": "sinkASQLType"
+						},
+						{
+							"dataset": {
+								"referenceName": "DS_ASQL",
+								"type": "DatasetReference"
+							},
+							"name": "sinkASQLLanguage"
+						}
+					],
+					"transformations": [
+						{
+							"name": "flattenLanguages"
+						},
+						{
+							"name": "flattenType"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          catalog as (book as ({@id} as string, author as string, description as string, genre as string, languages as (language as string[]), price as double, publish_date as date, title as string, types as ({_value_} as string, type as string[]))[])",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false,",
+						"     validationMode: 'none',",
+						"     namespaces: true,",
+						"     wildcardPaths:[('File3.xml')]) ~> sourceXML",
+						"sourceXML foldDown(unroll(catalog.book.languages.language, catalog.book.languages.language),",
+						"     mapColumn(",
+						"          language = catalog.book.languages.language,",
+						"          author = catalog.book.author,",
+						"          title = catalog.book.title",
+						"     ),",
+						"     skipDuplicateMapInputs: false,",
+						"     skipDuplicateMapOutputs: false) ~> flattenLanguages",
+						"sourceXML foldDown(unroll(catalog.book.types.type),",
+						"     mapColumn(",
+						"          type = catalog.book.types.type,",
+						"          price = catalog.book.price,",
+						"          title = catalog.book.title",
+						"     ),",
+						"     skipDuplicateMapInputs: false,",
+						"     skipDuplicateMapOutputs: false) ~> flattenType",
+						"flattenLanguages sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     partitionFileNames:[('filelang.csv')],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> sinkBlobBookLanguage",
+						"flattenType sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     partitionFileNames:[('filetype.csv')],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> sinkBlobBookType",
+						"flattenType sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          c1 as string,",
+						"          c2 as string,",
+						"          c3 as string",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     recreate:true,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sinkASQLType",
+						"flattenLanguages sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          c1 as string,",
+						"          c2 as string,",
+						"          c3 as string",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sinkASQLLanguage"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/df_complexXML_NEW')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"folder": {
+					"name": "XML"
+				},
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "DS_COMPLEX_XML_1",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "DS_ASQL",
+								"type": "DatasetReference"
+							},
+							"name": "sinkSQLTLanges"
+						},
+						{
+							"dataset": {
+								"referenceName": "DS_ASQL",
+								"type": "DatasetReference"
+							},
+							"name": "sinkasqltypes"
+						}
+					],
+					"transformations": [
+						{
+							"name": "flatten1"
+						},
+						{
+							"name": "langes"
+						},
+						{
+							"name": "types"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          catalog as (book as ({@id} as string, author as string, description as string, genre as string, languages as (language as string[]), price as double, publish_date as date, title as string, types as ({_value_} as string, type as string[]))[])",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false,",
+						"     validationMode: 'none',",
+						"     namespaces: true,",
+						"     wildcardPaths:[('File3.xml')]) ~> source1",
+						"source1 foldDown(unrollMultiple(catalog.book,catalog.book.languages.language,catalog.book.types.type),",
+						"     mapColumn(",
+						"          catalog = catalog.book.{@id},",
+						"          author = catalog.book.author,",
+						"          description = catalog.book.description,",
+						"          genre = catalog.book.genre,",
+						"          language = catalog.book.languages.language,",
+						"          price = catalog.book.price,",
+						"          title = catalog.book.title,",
+						"          publish_date = catalog.book.publish_date,",
+						"          ttype = catalog.book.types.type",
+						"     ),",
+						"     skipDuplicateMapInputs: false,",
+						"     skipDuplicateMapOutputs: false) ~> flatten1",
+						"flatten1 select(mapColumn(",
+						"          author,",
+						"          description,",
+						"          language,",
+						"          title",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> langes",
+						"flatten1 select(mapColumn(",
+						"          author,",
+						"          genre,",
+						"          price,",
+						"          title,",
+						"          type = ttype",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> types",
+						"langes sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          c1 as string,",
+						"          c2 as string,",
+						"          c3 as string",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     recreate:true,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sinkSQLTLanges",
+						"types sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          c1 as string,",
+						"          c2 as string,",
+						"          c3 as string",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     recreate:true,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sinkasqltypes"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PL_ZIP_FILE_COPY')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "SFTP_TO_BLOB",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "SftpReadSettings",
+									"recursive": true,
+									"wildcardFileName": "Scan.Property.Data.zip",
+									"enablePartitionDiscovery": false,
+									"disableChunking": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings",
+									"compressionProperties": {
+										"type": "ZipDeflateReadSettings"
+									}
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings",
+									"maxConcurrentConnections": 0
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DS_SFTP",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DS_BLOB_ZIP",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Data flow - API Json Message",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "SFTP_TO_BLOB",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "DF_RESTAPIMSG",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Metadata": {},
+									"PDFFiles": {},
+									"sink": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					},
+					{
+						"name": "RestAPICALL",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "Data flow - API Json Message",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "https://azdevstor.blob.core.windows.net/xmldemo-out/Message.json",
+								"type": "Expression"
+							},
+							"method": "PUT",
+							"headers": {
+								"x-ms-version": "2017-11-09",
+								"x-ms-blob-type": "BlockBlob"
+							},
+							"body": {
+								"value": "{}",
+								"type": "Expression"
+							},
+							"authentication": {
+								"type": "MSI",
+								"resource": "https://storage.azure.com/"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "SFTP"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/DF_RESTAPIMSG')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/XML004_DataFlow')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Data flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "df_ComplexXML",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"sourceXML": {
+										"FileName": {
+											"value": "File3.xml",
+											"type": "Expression"
+										}
+									},
+									"sinkBlobBookLanguage": {
+										"fileName": {
+											"value": "File3Lan.csv",
+											"type": "Expression"
+										}
+									},
+									"sinkBlobBookType": {
+										"fileName": {
+											"value": "File3Type.csv",
+											"type": "Expression"
+										}
+									},
+									"sinkASQLType": {
+										"tabName": {
+											"value": "tblType",
+											"type": "Expression"
+										}
+									},
+									"sinkASQLLanguage": {
+										"tabName": {
+											"value": "tblLang",
+											"type": "Expression"
+										}
+									}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "XML"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/df_ComplexXML')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/XML004_DataFlow_New')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -74,7 +657,9 @@
 				},
 				"annotations": []
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/df_complexXML_NEW')]"
+			]
 		}
 	]
 }
