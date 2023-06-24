@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "Sftp",
 		"typeProperties": {
-			"host": "10.116.1.111",
+			"host": "192.168.0.105",
 			"port": 22,
 			"skipHostKeyValidation": false,
 			"hostKeyFingerprint": "ssh-ed25519 32 67:68:ef:79:f4:7e:40:96:f2:4e:5a:22:ba:d3:30:e8",
