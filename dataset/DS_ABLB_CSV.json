@@ -12,7 +12,7 @@
 				"type": "AzureBlobStorageLocation",
 				"fileName": "Metadata.csv",
 				"folderPath": "data1.zip/data1",
-				"container": "xmldemo-out"
+				"container": "zipdemo-in"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
