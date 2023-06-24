@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "Msg.json",
-				"container": "xmldemo-out"
+				"container": "zipdemo"
 			}
 		},
 		"schema": {}
