@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"container": "sipdemo-in"
+				"container": "zipdemo-in"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
