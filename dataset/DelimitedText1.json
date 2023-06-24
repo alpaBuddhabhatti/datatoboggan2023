@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"folderPath": "data1.zip/data1",
-				"container": "xmldemo-out"
+				"container": "zipdemo-in"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
